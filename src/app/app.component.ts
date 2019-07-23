@@ -40,9 +40,10 @@ export class AppComponent implements OnInit {
         this.showLoading = true
         this.showError = false
 
-        this.httpClient.get("http://localhost:9099/convertToWord/" + value, { responseType: 'text' })
+        this.httpClient.get<ResultResponse>("http://localhost:9009/convertToWord/" + value, { responseType: 'json' })
           .subscribe(data => {
-            this.result = data
+            this.result = data.result
+            this.showError = data.hasError
             this.showLoading = false
           })
       }
@@ -51,8 +52,13 @@ export class AppComponent implements OnInit {
       }
     }
   }
-
+ 
   validateValues(value: number): boolean {
-    return value > -2147483648 && value < 2147483648
+    return value >= -2147483648 && value <= 2147483648
   }
+}
+
+export interface ResultResponse {
+  result: string
+  hasError: boolean
 }
