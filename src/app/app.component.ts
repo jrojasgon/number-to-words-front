@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { AppConstants } from './AppConstants';
+import { AppConstants } from './app.constants';
 
 
 @Component({
